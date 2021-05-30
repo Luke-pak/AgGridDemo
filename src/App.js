@@ -1,23 +1,22 @@
-import logo from './logo.svg';
+
 import './App.css';
 
+import {AgGridReact} from 'ag-grid-react';
+import 'ag-grid-community/dist/styles/ag-grid.css';
+import 'ag-grid-community/dist/styles/ag-theme-balham.css';
+
+import {useRecoilValue} from 'recoil';
+
+import {AgState} from './Atoms';
+
 function App() {
+  const state = useRecoilValue(AgState);
+
+  console.log(state);
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div className='ag-theme-balham' style={{width: 600, height: 800}}>
+      <AgGridReact columnDefs={state.columnDefs} rowData={state.rowDatas}/>
     </div>
   );
 }
